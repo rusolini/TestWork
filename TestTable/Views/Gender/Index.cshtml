@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Dropdownlistmvc.Data.Gender>
+
+@{
+    ViewBag.Title = "Gender";
+}
+
+<h2>Employees</h2>
+
+<p>
+    @Html.ActionLink(" New", "AddGender",null, new { @class = "btn btn-primary glyphicon glyphicon-plus" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.GenderName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.GenderName)
+        </td>
+
+        <td>
+            @Html.ActionLink(" ", "Delete", new { Id = item.GenderId }, new { @class = "btn btn-danger glyphicon glyphicon-remove" }) |
+            @Html.ActionLink(" Edit", "Edit", new { Id = item.GenderId }, new { @class = "btn btn-primary glyphicon glyphicon-ok" })
+        </td>
+    </tr>
+}
+
+</table>
+
+@section Scripts {
+    <script>
+
+
+        $(document).ready(function () {
+            if ('@TempData["message"]' == "Deleted") {
+               $.notify("Warning: your record has been deleted successfully", "warn");
+            }
+            if ('@TempData["message"]' == "Save"){
+                $.notify("your record has been Saved successfully", "success");
+
+            }
+        });
+
+
+    </script>
+}
